@@ -1,0 +1,160 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/remote"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#60000000"
+    android:padding="20dp"
+    tools:context="${relativePackage}.${activityClass}" >
+
+    <ImageView
+        android:id="@+id/server_status"
+        android:layout_width="16dp"
+        android:layout_height="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="2dp"
+        android:contentDescription="@string/Status"
+        android:src="@drawable/status_red" />
+
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"       
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/server_status"
+        android:layout_toRightOf="@+id/server_status"
+        android:text="@string/not_connected"
+        android:textColor="@android:color/primary_text_dark" />
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/empty"
+        android:src="@drawable/back" />
+
+    <ImageButton
+        android:id="@+id/play"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/PlayPause"
+        android:src="@drawable/play" />
+
+    <ImageButton
+        android:id="@+id/plus"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_above="@+id/play"
+        android:layout_toLeftOf="@+id/next"
+        android:layout_toStartOf="@+id/next"
+        android:contentDescription="@string/VolUp"
+        android:src="@drawable/plus" />
+
+    <ImageButton
+        android:id="@+id/prev"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/plus"
+        android:layout_toStartOf="@+id/plus"
+        android:contentDescription="@string/Previous"
+        android:scaleType="center"
+        android:src="@drawable/prev" />
+
+    <ImageButton
+        android:id="@+id/next"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/play"
+        android:layout_toRightOf="@+id/play"
+        android:contentDescription="@string/Next"
+        android:src="@drawable/next" />
+
+    <ImageButton
+        android:id="@+id/minus"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_below="@+id/play"
+        android:layout_toEndOf="@+id/prev"
+        android:layout_toRightOf="@+id/prev"
+        android:contentDescription="@string/VolDown"
+        android:src="@drawable/minus" />
+
+    <ImageButton
+        android:id="@+id/mute"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/play"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_toLeftOf="@+id/play"
+        android:layout_toStartOf="@+id/play"
+        android:contentDescription="@string/Mute"
+        android:src="@drawable/mute" />
+
+    <ImageButton
+        android:id="@+id/media"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_above="@+id/play"
+        android:layout_marginBottom="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
+        android:layout_toLeftOf="@+id/play"
+        android:layout_toStartOf="@+id/play"
+        android:contentDescription="@string/Media"
+        android:src="@drawable/media" />
+
+    <ImageButton
+        android:id="@+id/zoom"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_above="@+id/play"
+        android:layout_marginBottom="50dp"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_toEndOf="@+id/play"
+        android:layout_toRightOf="@+id/play"
+        android:contentDescription="@string/Zoom"
+        android:src="@drawable/zoom" />
+
+    <ImageButton
+        android:id="@+id/stop"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_width="61dp"
+        android:layout_height="61dp"
+        android:layout_below="@+id/play"
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:layout_toEndOf="@+id/play"
+        android:layout_toRightOf="@+id/play"
+        android:contentDescription="@string/Stop"
+        android:src="@drawable/stop" />
+
+    <TextView
+        android:id="@+id/debug"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:textColor="@android:color/primary_text_dark" />
+
+</RelativeLayout>
