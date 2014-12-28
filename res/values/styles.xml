@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <style name="AppTheme" parent="android:Theme.Holo.Light.DarkActionBar">
+    <style name="AppTheme" parent="@android:style/Theme.Holo">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowShowWallpaper">true</item>
@@ -9,13 +9,6 @@
 
     <style name="SettingsTheme" parent="@android:style/Theme.WallpaperSettings">
         <item name="android:windowBackground">@android:drawable/screen_background_dark_transparent</item>
-        <item name="android:windowActionBar">true</item>
-        <item name="android:windowNoTitle">false</item>
-        <item name="android:actionBarStyle">@android:style/Widget.Holo.ActionBar.Solid</item>
-    </style>
-
-    <style name="ConfigServersTheme" parent="@android:style/Theme.WallpaperSettings">
-        <item name="android:windowBackground">@android:drawable/screen_background_dark</item>
         <item name="android:windowActionBar">true</item>
         <item name="android:windowNoTitle">false</item>
         <item name="android:actionBarStyle">@android:style/Widget.Holo.ActionBar.Solid</item>

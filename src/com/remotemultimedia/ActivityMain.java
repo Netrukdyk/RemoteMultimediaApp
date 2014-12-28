@@ -1,5 +1,6 @@
 package com.remotemultimedia;
 
+import java.lang.reflect.Field;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
@@ -21,6 +22,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.View.OnLongClickListener;
+import android.view.ViewConfiguration;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -39,6 +41,8 @@ public class ActivityMain extends Activity implements OnClickListener, OnLongCli
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		getOverflowMenu();
 
 		serverStatus = (ImageView) findViewById(R.id.server_status);
 		status = (TextView) findViewById(R.id.status);
@@ -85,6 +89,20 @@ public class ActivityMain extends Activity implements OnClickListener, OnLongCli
 		startServer();
 	}
 
+	private void getOverflowMenu() {
+
+	     try {
+	        ViewConfiguration config = ViewConfiguration.get(this);
+	        Field menuKeyField = ViewConfiguration.class.getDeclaredField("sHasPermanentMenuKey");
+	        if(menuKeyField != null) {
+	            menuKeyField.setAccessible(true);
+	            menuKeyField.setBoolean(config, false);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	}
+	
 	private InetAddress getBroadcastIpAddress() {
 		try {
 			WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
