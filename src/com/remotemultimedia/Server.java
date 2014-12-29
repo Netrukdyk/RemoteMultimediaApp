@@ -71,6 +71,7 @@ class Server extends Thread {
 				if (s.isConnected()) {
 					setStatus(1);
 					Log.v("Server", "Socket connected");
+					sendToUI(C.Type.INFO, s.getRemoteSocketAddress().toString());
 					out = s.getOutputStream();
 					output = new PrintWriter(out, true);
 				}
@@ -166,8 +167,7 @@ class Server extends Thread {
 	@Override
 	public void run() {
 		Log.v("Server", "Run");
-		serverIP = findServer(broadcastIp);
-		//sendToUI(serverIP);
+		serverIP = findServer(broadcastIp);		
 		sendStatusToUI();
 		connect();
 	} // End of Run
