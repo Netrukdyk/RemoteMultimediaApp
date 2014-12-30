@@ -37,6 +37,8 @@ public class ActivityMain extends Activity implements OnClickListener, OnLongCli
 	SharedPreferences preferences;
 	TextView status, debug;
 
+	String serverName = "";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -69,6 +71,8 @@ public class ActivityMain extends Activity implements OnClickListener, OnLongCli
 		media.setOnClickListener(this);
 		zoom.setOnClickListener(this);
 
+		
+		
 		startServer();
 	}
 
@@ -142,7 +146,10 @@ public class ActivityMain extends Activity implements OnClickListener, OnLongCli
 					setServerStatus(0);
 				break;
 			case INFO:
-				debug.setText(msg.getData().getString("Server"));
+				serverName = msg.getData().getString("Server");
+				status.append(" ("+serverName+")");
+				//debug.setText(serverName);
+				
 				break;
 			case OTHER:
 				if (msg.getData().get("Server") == "Disconnected")

@@ -20,6 +20,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Base64;
 import android.util.Log;
+import android.util.Pair;
 
 import com.remotemultimedia.C.Type;
 
@@ -51,6 +52,7 @@ class Server extends Thread {
 	};
 	private String serverIP = C.IP;
 	private int serverPORT = C.PORT;
+	private String serverName = "";
 
 	private Handler uiHandler;
 
@@ -71,7 +73,7 @@ class Server extends Thread {
 				if (s.isConnected()) {
 					setStatus(1);
 					Log.v("Server", "Socket connected");
-					sendToUI(C.Type.INFO, s.getRemoteSocketAddress().toString());
+					sendToUI(C.Type.INFO, serverName);
 					out = s.getOutputStream();
 					output = new PrintWriter(out, true);
 				}
@@ -107,12 +109,13 @@ class Server extends Thread {
 		}
 	}
 
-	private String findServer(InetAddress broadcastIp) {
+	private Pair<String, String> findServer(InetAddress broadcastIp){
 		Boolean found = false;
 		int key = (int) Math.round(Math.random() * 10000);
 		int newkey = key+1234;
 		String data = "RMS_"+key;
 		String ip = null;
+		String name = null;
 
 		byte[] outdata = Base64.encode(data.getBytes(), Base64.DEFAULT);
 		byte[] buf = new byte[64];
@@ -122,8 +125,7 @@ class Server extends Thread {
 		try {
 			socket = new DatagramSocket(serverPORT);
 			socket.setBroadcast(true);
-			do {
-				
+			do {				
 				socket.send(outPacket);
 				//Log.v("UDP",new String(outPacket.getData(),Charset.forName("UTF8")));
 				socket.receive(inPacket);
@@ -134,6 +136,7 @@ class Server extends Thread {
 				if (tokens.nextToken().contains("RMS_"+newkey)) {
 					found = true;
 					ip = tokens.nextToken();
+					name = tokens.nextToken();
 				} else
 					Thread.sleep(1000);
 			} while (!found);
@@ -146,7 +149,7 @@ class Server extends Thread {
 		}
 		if (socket != null)
 			socket.close();
-		return ip;
+		return new Pair<String, String>(ip, name);
 	}
 
 	// getter for local Handler
@@ -167,7 +170,9 @@ class Server extends Thread {
 	@Override
 	public void run() {
 		Log.v("Server", "Run");
-		serverIP = findServer(broadcastIp);		
+		Pair<String, String> server = findServer(broadcastIp);
+		serverIP = server.first;
+		serverName = server.second;
 		sendStatusToUI();
 		connect();
 	} // End of Run
