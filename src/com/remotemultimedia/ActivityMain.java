@@ -109,6 +109,12 @@ public class ActivityMain extends Activity implements OnClickListener, OnLongCli
 	    }
 	}
 	
+	@Override
+	protected void onDestroy() {
+		killServer();
+		super.onDestroy();
+	}
+	
 	private InetAddress getBroadcastIpAddress() {
 		try {
 			WifiManager wifi = (WifiManager) getSystemService(Context.WIFI_SERVICE);
