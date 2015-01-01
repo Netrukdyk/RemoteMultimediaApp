@@ -77,12 +77,14 @@ public class ActivityMain extends Activity implements OnClickListener, OnLongCli
 	}
 
 	private void startServer() {
-		server = new Server(uiHandler, getBroadcastIpAddress());
-		server.start();
+		if(server == null){
+			server = new Server(uiHandler, getBroadcastIpAddress());
+			server.start();
+		}
 	}
 
 	private void killServer() {
-		if (server != null) {
+		if (server != null && server.getStatus() == 1) {
 			server.kill();
 			server = null;
 		}
